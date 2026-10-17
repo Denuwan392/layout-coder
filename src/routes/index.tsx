@@ -180,7 +180,7 @@ function Discover() {
           <EmptyState title="No roads lead here — yet" body="No jobs match these filters. Try widening the destination or salary range." action={<button onClick={reset} className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">Reset filters</button>} />
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {results.map((j, i) => <JobCard key={j.id} job={j} variant={i === 0 && !q && active === 0 ? "wide" : variants[i % variants.length]} />)}
+            {results.map((j, i) => <JobCard key={j.id} job={j} variant={i === 0 && !q && active === 0 ? "wide" : variants[i % variants.length] ?? "standard"} />)}
           </div>
         )}
       </section>

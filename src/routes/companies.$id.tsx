@@ -35,7 +35,7 @@ function CompanyPage() {
   const extra = useStore((s) => s.reviews[c.id] ?? NO_REVIEWS);
   const reviews = [...extra, ...c.reviews];
   const listings = jobs.filter((j) => j.agencyId === c.id || j.employerId === c.id);
-  const [form, setForm] = useState({ category: CATS[0], role: "", text: "" });
+  const [form, setForm] = useState<{ category: Review["category"]; role: string; text: string }>({ category: "Unpaid salary", role: "", text: "" });
   const [mode, setMode] = useState<"report" | "correction" | null>(null);
 
   const submit = (e: React.FormEvent) => {
@@ -44,7 +44,7 @@ function CompanyPage() {
     const r: Review = { id: `u${Date.now()}`, date: new Date().toISOString().slice(0, 10), category: mode === "correction" ? "Misleading terms" : form.category, status: "Under review", evidence: "Unsubstantiated", role: form.role || "Not stated", text: (mode === "correction" ? "[Correction request] " : "") + form.text };
     setState((s) => ({ ...s, reviews: { ...s.reviews, [c.id]: [r, ...(s.reviews[c.id] ?? [])] } }));
     toast.success("Submitted for moderation", { description: "Saved in this browser only (demo)." });
-    setForm({ category: CATS[0], role: "", text: "" }); setMode(null);
+    setForm({ category: "Unpaid salary", role: "", text: "" }); setMode(null);
   };
 
   const counts = CATS.slice(0, 4).map((k) => ({ k, n: reviews.filter((r) => r.category === k).length }));
