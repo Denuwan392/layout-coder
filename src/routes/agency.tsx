@@ -46,12 +46,12 @@ function Agency() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const er: Record<string, string> = {};
-    if (!f.role) er.role = "Required";
-    if (!f.country) er.country = "Required";
-    if (!(+f.salary > 0)) er.salary = "Enter a monthly amount";
-    if (!f.visa) er.visa = "Required";
-    else if (/tourist|visit/i.test(f.visa)) er.visa = "Tourist or visit visas cannot be used for employment";
-    if (!f.contract) er.contract = "Required";
+    if (!f.role) er["role"] = "Required";
+    if (!f.country) er["country"] = "Required";
+    if (!(+f.salary > 0)) er["salary"] = "Enter a monthly amount";
+    if (!f.visa) er["visa"] = "Required";
+    else if (/tourist|visit/i.test(f.visa)) er["visa"] = "Tourist or visit visas cannot be used for employment";
+    if (!f.contract) er["contract"] = "Required";
     setErrors(er);
     if (Object.keys(er).length) { toast.error("Fix the highlighted fields"); return; }
     const flagged = +f.fee > 150000;

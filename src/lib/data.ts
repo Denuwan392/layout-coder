@@ -13,7 +13,7 @@ export interface Finding {
   severity: RiskLevel;
   kind: "confirmed" | "suspected" | "allegation" | "unavailable";
   title: string;
-  excerpt?: string;
+  excerpt?: string | undefined;
   why: string;
   source: Provenance;
 }
